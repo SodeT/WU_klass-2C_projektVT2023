@@ -1,0 +1,27 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#grid-wrapper {
+    height: fit-content;
+    width: 100vw;
+    background-color: lightblue;
+}
+
+@media only screen and (min-width: 768px) {
+
+    #grid-wrapper {
+        height: fit-content;
+        width: 100vw;
+        background-color: firebrick;
+
+        display: grid;
+        grid-template-areas: 
+        "header"
+        "intro"
+        "carousel"
+        "slidein"
+        "footer";
+    }
+}
