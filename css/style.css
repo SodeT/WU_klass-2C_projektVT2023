@@ -1,21 +1,32 @@
 /* #region general*/
 
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap%27');
+
 * {
     margin: 0px;
     padding: 0px;
 
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'lato', sans-serif;
+    font-size:large;
+    color: #20C20E;
 }
 
-section {
-    padding: 20px;
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'lato', sans-serif;
+    font-size:larger;
 }
+
 
 /* #endregion*/
 
@@ -30,83 +41,19 @@ section {
     grid-template-areas: 
     "header"
     "intro"
-    "carousel"
     "slidein"
     "footer";
-}
-
-#index-big-header {
-    grid-area: header;
-
-    background-color: pink;
-
-    height: 300px;
-    width: 100vw;
-}
-
-
-#index-small-header {
-    position: fixed;
-    top: -100%;
-
-    background-color: aqua;
-    z-index: 5;
-    height: 100px;
-    width: 100vw;
-}
-
-#index-small-header.small-header {
-    top: 0px;
 }
 
 #index-intro {
     grid-area: intro;
     
-    height: 1000px;
+    height: fit-content;
     width: 100vw;
+
+    padding: 20px;
 
     background: linear-gradient(256deg, #957672, #3d5325);
-}
-
-#index-carousel {
-    grid-area: carousel;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    position: block;
-
-    height: 400px;
-    width: 100vw;
-
-    background-color: tan;
-}
-
-.index-carousel-slide {
-    display: none;
-
-    margin: 0px;
-    height: 90%;
-    width: 90%;
-}
-
-.index-carousel-slide div {
-    height: 100%;
-    width: 100%;
-}
-
-.index-carousel-slide.visible {
-    display: block;
-}
-
-.carousel-button {
-    font-size: 3rem;
-}
-
-.carousel-button:hover {
-    cursor: pointer;
-    background-color: rgba(0,0,0,0.2);
 }
 
 #index-slidein {
@@ -149,3 +96,148 @@ section {
         "footer";
     }
 }
+
+/* #region jobs */
+
+#jobs-grid-wrapper {
+    height: fit-content;
+    width: 100vw;
+    background-color: firebrick;
+    
+    display: grid;
+    grid-template-areas: 
+    "header"
+    "intro"
+    "carousel"
+    "footer";
+}
+
+#jobs-carousel {
+    grid-area: carousel;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    position: block;
+
+    height: 400px;
+    width: 100vw;
+
+    background-color: tan;
+}
+
+.jobs-carousel-slide {
+    display: none;
+
+    margin: 0px;
+    height: 90%;
+    width: 90%;
+}
+
+.jobs-carousel-slide div {
+    height: 90%;
+    width: 100%;
+}
+
+.jobs-carousel-slide.visible {
+    display: block;
+}
+
+.carousel-button {
+    font-size: 3rem;
+}
+
+.carousel-button:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.2);
+}
+
+/* #endegion */
+
+
+/* #region nav, footer and header stuff */
+
+#big-header {
+    position: relative;
+    grid-area: header;
+
+    background-color: #040418;
+    
+    height: 300px;
+    width: 100vw;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+#small-header {
+    position: fixed;
+    top: -100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    z-index: 2;
+
+    background-color: #040418;
+    height: 100px;
+    width: 100vw;
+}
+
+#small-header.header-toggle {
+
+    top: 0px;
+}
+
+#ham-icon {
+    font-size: 2rem;
+    color: #20C20E;
+}
+
+nav {
+    position: absolute;
+    top: 10px;
+
+    z-index: 1;
+    width: 100vw;
+    height: fit-content;
+}
+
+nav.header-toggle.nav-toggle {
+    position: fixed;
+    top: 100px;
+    height: 20px;
+    background-color: goldenrod /*#040418*/;
+}
+
+#nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    
+    width: 100vw;
+    height: 100px;
+}
+
+.nav-list-element {
+    position: relative;
+
+    width: fit-content;
+    height: fit-content;
+
+}
+
+.nav-list-link {
+    text-decoration: none;
+    color: #9ccc3c;
+    font-size:larger;
+}
+
+/* #endregion */

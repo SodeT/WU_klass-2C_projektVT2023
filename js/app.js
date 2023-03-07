@@ -1,45 +1,73 @@
 var currentSlide = 0;
 
 window.onload = function init() {
-    
-    // automatic global variable
-    smallHeader = document.getElementById("index-small-header"); 
-    bigHeader = document.getElementById("index-big-header"); 
-    slidein = document.getElementById("index-slidein");
-    slideinDiv = document.getElementById("index-slidein-div");
+    // getting elements present on every sub page
+    nav = document.getElementsByTagName("nav")[0];
+    hamIcon = document.getElementById("ham-icon");
+    hamIcon.addEventListener("click", toggleNav);
 
-    changeSlide(0); // initaialize slide
+    // getting specific sub page elements
+    var path = window.location.pathname;
+    subPage = path.substring(path.lastIndexOf('/') + 1);
+
+    switch (subPage) {
+        case "index.html":
+            slidein = document.getElementById("index-slidein");
+            slideinDiv = document.getElementById("index-slidein-div");
+            console.log(nav);
+            break;
     
-    setInterval(500, changeSlide(1));
+        case "jobs.html":
+            carouselLeftBtn = document.getElementById("carousel-left");
+            carouselRightBtn = document.getElementById("carousel-right");       
+            
+            carouselLeftBtn.addEventListener("click", function(){changeSlide(-1)});
+            carouselRightBtn.addEventListener("click", function(){changeSlide(1)});
+
+            changeSlide(0); // initaialize slide
+            //setInterval(500, changeSlide(1));
+            break;
+    
+        case "products.html":
+            break;
+    
+        case "about.html":
+            break;
+    }
+
+    // automatic global variable
+    smallHeader = document.getElementById("small-header"); 
+    bigHeader = document.getElementById("big-header");
 
     return;
 }
 
 window.onscroll = function scroll() {
-
     var scrollDist = window.pageYOffset;
-
+    
     if (scrollDist >= bigHeader.offsetHeight - smallHeader.offsetHeight) {
-        smallHeader.classList.add("small-header");
+        smallHeader.classList.add("header-toggle");
+        nav.classList.add("header-toggle");
     }
     else {
-        smallHeader.classList.remove("small-header");
+        smallHeader.classList.remove("header-toggle");
+        nav.classList.remove("header-toggle");
+        nav.classList.remove("nav-toggle")
     }
 
+    switch (subPage) {
+        case "index.html":
+            var slideOffset = slidein.offsetTop - scrollDist - slidein.offsetHeight/2 + 90;
+            slideOffset = Math.max(slideOffset, 0);
+            slideinDiv.style.left = slideOffset.toString() + "px";
+            break;
+    }
     
-    // use sigoid curve here
-    var slideOffset = slidein.offsetTop - scrollDist - slidein.offsetHeight/2;
-
-    console.log(slideOffset);
-    
-    slideOffset = Math.max(slideOffset, 0);
-    slideinDiv.style.left = slideOffset.toString() + "px";
-
     return;
 }
 
 function changeSlide(number) {
-    var slides = document.getElementsByClassName("index-carousel-slide");
+    var slides = document.getElementsByClassName("jobs-carousel-slide");
     
     currentSlide += number;
     
@@ -55,4 +83,8 @@ function changeSlide(number) {
     slides[currentSlide].classList.add("visible");
 
     return;
+}
+
+function toggleNav() {
+    nav.classList.toggle("nav-toggle");
 }
