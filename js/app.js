@@ -11,28 +11,28 @@ window.onload = function init() {
     subPage = path.substring(path.lastIndexOf('/') + 1);
 
     switch (subPage) {
-        case "index.html":
-            slidein = document.getElementById("index-slidein");
-            slideinDiv = document.getElementById("index-slidein-div");
-            console.log(nav);
-            break;
-    
-        case "jobs.html":
-            carouselLeftBtn = document.getElementById("carousel-left");
-            carouselRightBtn = document.getElementById("carousel-right");       
-            
-            carouselLeftBtn.addEventListener("click", function(){changeSlide(-1)});
-            carouselRightBtn.addEventListener("click", function(){changeSlide(1)});
+    case "index.html":
+        slidein = document.getElementById("index-slidein");
+        slideinDiv = document.getElementById("index-slidein-div");
+        console.log(nav);
+        break;
 
-            changeSlide(0); // initaialize slide
-            //setInterval(500, changeSlide(1));
-            break;
-    
-        case "products.html":
-            break;
-    
-        case "about.html":
-            break;
+    case "jobs.html":
+        carouselLeftBtn = document.getElementById("carousel-left");
+        carouselRightBtn = document.getElementById("carousel-right");       
+        
+        carouselLeftBtn.addEventListener("click", function(){changeSlide(-1)});
+        carouselRightBtn.addEventListener("click", function(){changeSlide(1)});
+
+        changeSlide(0); // initaialize slide
+        //setInterval(500, changeSlide(1));
+        break;
+
+    case "products.html":
+        break;
+
+    case "about.html":
+        break;
     }
 
     // automatic global variable
