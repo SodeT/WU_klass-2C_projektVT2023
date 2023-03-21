@@ -70,6 +70,8 @@ p {
     "header"
     "intro"
     "slidein"
+    "text"
+    "img1"
     "what-we-do"
     "footer";
 }
@@ -103,8 +105,8 @@ p {
     position: relative;
 
     
-    height: 80%;
-    width: 80%;
+    height: fit-content;
+    width: 80vw;
     background-color: var(--col_bg_2);
 }
 
@@ -113,6 +115,37 @@ p {
     width: 100%;
     height: max-content;
     padding: 10px;
+}
+
+#index-ceo-img {
+    width: 100%;
+    height: auto;
+}
+
+#index-text {
+    grid-area: text;
+    width: 100vw;
+    height: fit-content;
+    padding: 20px;
+    background-color: var(--col_bg_2);
+}
+
+#index-hand {
+    grid-area: img1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    gap: 20px;
+    width: 80vw;
+}
+
+#index-hand-img {
+    width: 70%;
+    height: auto;
 }
 
 #index-what-we-do {
@@ -125,22 +158,82 @@ p {
 
 /* #endregion */
 
+/* #region index desktop*/
+
 @media only screen and (min-width: 768px) {
 
     #index-grid-wrapper {
         height: fit-content;
         width: 100vw;
-        background-color: firebrick;
 
         display: grid;
+        /*
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: fit-content fit-content fit-content fit-content;
+        */
         grid-template-areas: 
-        "header"
-        "intro"
-        "carousel"
-        "slidein"
-        "footer";
+        "header header"
+        "img1 intro"
+        "img1 text"
+        "what-we-do slidein"
+        "footer footer";
+    }
+
+    #index-intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50vw;
+    }
+    
+    #index-intro p {
+        width: 60%;
+    }
+
+    #index-slidein {
+        height: 100%;
+        width: 50vw;
+    }
+    
+    #index-slidein-div {
+        width: 20vw;
+        height: fit-content;
+    }
+    
+    
+    #index-text {
+        grid-area: text;
+        width: 50vw;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #index-text p {
+        width: 60%;
+    }
+    
+    #index-hand {
+        width: 50vw;
+    }
+
+    #index-what-we-do {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50vw;
+    }
+
+    #index-what-we-do p {
+        width: 60%;
     }
 }
+
+/* #endregion */
 
 /* #region jobs */
 
@@ -207,6 +300,11 @@ p {
     background-color: rgba(0,0,0,0.2);
 }
 
+.jobs-job-titles {
+    width: 100%;
+    height: auto;
+}
+
 /* #endregion */
 
 /* #region products */
@@ -259,6 +357,11 @@ p {
     justify-content: center;
 
     padding: 10px;
+}
+
+.products-images {
+    width: 100%;
+    height: auto;
 }
 
 /* #endregion */
@@ -407,6 +510,14 @@ nav a {
     text-decoration: none;
     color: var(--col_acc_2);
     font-size:larger;
+}
+
+footer {
+    grid-area: footer;
+    background-color: var(--col_bg_1);
+    color: var(--col_txt_1);
+    height: 100px;
+    width: 100vw;
 }
 
 /* #endregion */
