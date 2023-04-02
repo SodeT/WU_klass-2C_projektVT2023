@@ -11,8 +11,9 @@
     
     --col_acc_1: #20C20E;
     --col_acc_2: #f4ec04;
-    --col_txt_1: wheat;
-    --col_txt_2: wheat;
+
+    --col_txt_1: #f5deb3;
+
     --col_bg_1: #1a1a1a;
     --col_bg_2: #2a2a2a;
     --col_bg_3: #3a3a3a;
@@ -34,7 +35,7 @@ h2 {
     font-family: 'lato', sans-serif;
     font-size: x-large;
     font-weight: lighter;
-    color: var(--col_txt_2);
+    color: var(--col_txt_1);
 
     margin-bottom: 10px;
 }
@@ -43,11 +44,12 @@ p {
     font-size: medium;
     font-family:Arial, Helvetica, sans-serif;
     letter-spacing: 1px;
-    color: var(--col_txt_2);
+    color: var(--col_txt_1);
 }
 
 a {
     text-decoration: none;
+    
 }
 
 /* #endregion*/
@@ -67,6 +69,7 @@ a {
     "text"
     "img1"
     "what-we-do"
+    "img2"
     "footer";
 }
 
@@ -88,7 +91,7 @@ a {
     justify-content: center;
     align-items: center;
 
-    height: 600px;
+    height: fit-content;
     width: 100vw;
 
     background-color: var(--col_bg_3);
@@ -130,12 +133,12 @@ a {
     display: flex;
     flex-direction: column;
 
-    justify-content: flex-start;    
+    justify-content: center;    
     align-items: center;
 
     padding: 20px;
     gap: 20px;
-    width: 80vw;
+    width: 100vw;
 }
 
 #index-hand-img {
@@ -151,6 +154,19 @@ a {
     padding: 10px;
 }
 
+#index-robot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: fit-content;
+}
+
+#index-robot-img {
+    width: 70%;
+    height: auto;
+}
+
 /* #endregion */
 
 /* #region index desktop*/
@@ -162,12 +178,12 @@ a {
         width: 100vw;
 
         display: grid;
-        
         grid-template-areas: 
         "header header"
         "img1 intro"
         "img1 text"
         "what-we-do slidein"
+        "img2 slidein"
         "footer footer";
     }
 
@@ -177,6 +193,7 @@ a {
         justify-content: center;
         align-items: center;
         width: 50vw;
+
     }
     
     #index-intro p {
@@ -186,6 +203,8 @@ a {
     #index-slidein {
         height: 100%;
         width: 50vw;
+
+        background-color: var(--col_bg_3);
     }
     
     #index-slidein-div {
@@ -218,10 +237,29 @@ a {
         justify-content: center;
         align-items: center;
         width: 50vw;
+
+        background-color: var(--col_bg_3);
     }
 
     #index-what-we-do p {
         width: 60%;
+    }
+
+    #index-robot {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50vw;
+        height: fit-content;
+        padding: 20px;
+        gap: 20px;
+
+        background-color: var(--col_bg_3);
+    }
+    
+    #index-robot-img {
+        width: 50%;
+        height: auto;
     }
 }
 
@@ -258,8 +296,6 @@ a {
     justify-content: space-around;
     align-items: center;
 
-    position: block;
-
     height: 400px;
     width: 100vw;
 
@@ -268,22 +304,26 @@ a {
 
 .jobs-carousel-slide {
     display: none;
-
+    
     margin: 0px;
     height: 90%;
     width: 90%;
 }
 
-.jobs-carousel-slide div {
-    height: 90%;
-    width: 100%;
+.jobs-carousel-slide img {
+    height: 85%;
+    width: auto;
 }
 
 .jobs-carousel-slide.visible {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel-button {
+    color: var(--col_txt_1);
     font-size: 3rem;
 }
 
@@ -295,6 +335,63 @@ a {
 .jobs-job-titles {
     width: 100%;
     height: auto;
+}
+
+/* #endregion */
+
+/* #region jobs desktop */
+
+@media only screen and (min-width: 768px) {
+    
+    #jobs-grid-wrapper {
+        height: fit-content;
+        width: 100vw;
+        background-color: var(--col_bg_2);
+        
+        display: grid;
+        grid-template-areas: 
+        "header header"
+        "intro carousel"
+        "footer footer";
+    }
+    
+    #jobs-intro {
+        grid-area: intro;
+        width: 50vw;
+        height: fit-content;
+        padding: 20px;
+    
+        display: flex;
+        justify-content: center;
+
+        background-color: var(--col_bg_2);
+    }
+
+    #jobs-intro-div {
+        width: 60%;
+    }
+    
+    #jobs-carousel {
+        grid-area: carousel;
+    
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    
+        height: 600px;
+        width: 50vw;
+    
+        background-color: var(--col_bg_3);
+    }
+    
+    .jobs-carousel-slide {
+        display: none;
+    
+        margin: 0px;
+        height: 90%;
+        width: 90%;
+    }
+    
 }
 
 /* #endregion */
@@ -329,8 +426,9 @@ a {
     grid-area: products;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
+    align-items: flex-start;
+    justify-content: center;
+
     padding: 20px;
 
     gap: 20px;
@@ -358,6 +456,84 @@ a {
 
 /* #endregion */
 
+/* #region products desktop */
+
+@media only screen and (min-width: 768px) {
+    #products-grid-wrapper {
+        width: 100vw;
+        height: fit-content;
+    
+        background-color: var(--col_bg_2);
+    
+        display: grid;
+        grid-template-areas: 
+        "header"
+        "text"
+        "products"
+        "footer";
+    }
+    
+    #products-text {
+        grid-area: text;
+        width: 100vw;
+        height: fit-content;
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 20px;
+        background-color: var(--col_bg_2);
+    }
+    
+    #products-text-div {
+        width: 50%;
+    }
+
+    #products-products-div {
+        grid-area: products;
+        width: 100vw;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        background-color: var(--col_bg_3);
+    }
+
+    #products-products {
+
+        width: 80vw;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        padding: 20px;
+        gap: 20px;
+    }
+    
+
+    .products-solution {
+    
+        width: 20vw;
+        height: fit-content;
+    
+        background-color: var(--col_bg_2);
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+        padding: 10px;
+    }
+
+}
+
+/* #endregion */
+
 /* #region about */
 
 #about-grid-wrapper {
@@ -369,8 +545,8 @@ a {
     grid-template-areas: 
     "header"
     "info"
+    "reviews"
     "contact"
-    "our-team"
     "footer";
 }
 
@@ -393,11 +569,108 @@ a {
 
 }
 
-#about-out-team {
-    grid-area: our-team;
-
+#about-reviews {
+    grid-area: reviews;
     width: 100vw;
     height: fit-content;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--col_bg_3);
+}
+
+#review-list {
+    width: 60%;
+    gap: 20px;
+    list-style-position: inside;
+    list-style-type: square;
+    color: var(--col_txt_1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+/* #endregion */
+
+/* #region about desktop */
+
+@media only screen and (min-width: 768px) {
+        
+    #about-grid-wrapper {
+        width: 100vw;
+        height: fit-content;
+        background-color: var(--col_bg_2);
+        
+        display: grid;
+        grid-template-areas: 
+        "header header"
+        "info reviews"
+        "contact reviews"
+        "footer footer";
+    }
+
+    #about-info {
+        grid-area: info;
+        
+        display: flex;
+        justify-content: center;
+
+        width: 50vw;
+        height: fit-content;
+
+        padding: 20px;
+    }
+
+    #about-info-div {
+        width: 80%;
+    }
+
+    #about-contact {
+        grid-area: contact;
+
+        display: flex;
+        justify-content: center;
+
+        width: 50vw;
+        height: fit-content;
+
+        padding: 20px;
+
+    }
+
+    #about-contact-div {
+        width: 80%;
+    }
+
+    #about-reviews {
+        grid-area: reviews;
+        width: 50vw;
+        height: 100%;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    #review-list {
+        width: 60%;
+        height: 90%;
+        gap: 20px;
+        list-style-position: inside;
+        list-style-type: square;
+        color: var(--col_txt_1);
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
 
 }
 
@@ -406,7 +679,7 @@ a {
 /* #region nav, footer and header stuff */
 
 body {
-    background-color: var(--col_bg_2);
+    background-color: var(--col_bg_1);
 }
 
 #big-header {
@@ -507,8 +780,22 @@ footer {
     grid-area: footer;
     background-color: var(--col_bg_1);
     color: var(--col_txt_1);
-    height: 100px;
+    height: 200px;
     width: 100vw;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px
+}
+
+.footer-contact-div {
+    gap: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 /* #endregion */

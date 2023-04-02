@@ -14,7 +14,6 @@ window.onload = function init() {
     case "index.html":
         slidein = document.getElementById("index-slidein");
         slideinDiv = document.getElementById("index-slidein-div");
-        console.log(nav);
         break;
 
     case "jobs.html":
@@ -57,7 +56,7 @@ window.onscroll = function scroll() {
 
     switch (subPage) {
         case "index.html":
-            var slideOffset = slidein.offsetTop - scrollDist - slidein.offsetHeight/2 + 90;
+            var slideOffset = slidein.offsetTop - scrollDist - slidein.offsetHeight/2 + 350;
             slideOffset = Math.max(slideOffset, 0);
             slideinDiv.style.left = slideOffset.toString() + "px";
             break;
