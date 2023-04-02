@@ -5,6 +5,8 @@ window.onload = function init() {
     nav = document.getElementsByTagName("nav")[0];
     hamIcon = document.getElementById("ham-icon");
     hamIcon.addEventListener("click", toggleNav);
+    smallHeader = document.getElementById("small-header"); 
+    bigHeader = document.getElementById("big-header");
 
     // getting specific sub page elements
     var path = window.location.pathname;
@@ -13,7 +15,7 @@ window.onload = function init() {
     switch (subPage) {
     case "index.html":
         slidein = document.getElementById("index-slidein");
-        slideinDiv = document.getElementById("index-slidein-div");
+        slideInDiv = document.getElementById("index-slidein-div");
         break;
 
     case "jobs.html":
@@ -33,10 +35,6 @@ window.onload = function init() {
     case "about.html":
         break;
     }
-
-    // automatic global variable
-    smallHeader = document.getElementById("small-header"); 
-    bigHeader = document.getElementById("big-header");
 
     return;
 }
@@ -58,7 +56,7 @@ window.onscroll = function scroll() {
         case "index.html":
             var slideOffset = slidein.offsetTop - scrollDist - slidein.offsetHeight/2 + 350;
             slideOffset = Math.max(slideOffset, 0);
-            slideinDiv.style.left = slideOffset.toString() + "px";
+            slideInDiv.style.left = slideOffset.toString() + "px";
             break;
     }
     
