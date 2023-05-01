@@ -88,11 +88,14 @@ function toggleNav() {
 }
 
 class node {
-    constructor(x,y) {
-        this.x = x;
+	
+	constructor(x,y) {
+		this.x = x;
         this.y = y;
-        this.dx = Math.random() * 2 + 1;
-        this.dy = Math.random() * 2 + 1;
+        this.dx = Math.random() * 0.6;
+        this.dy = Math.random() * 0.6;
+		
+		this.distance = 1000000000.0; // magic number plz fix
 
         let rndx = Math.random();
         let rndy = Math.random();
@@ -137,32 +140,55 @@ function generateNodes() {
     ctx.canvas.width  = width;
     ctx.canvas.height = height;
     
-    positions = []
-    let i = 0;
-    for (let x = 0; x < 10; x++) {
-        for (let y = 0; y < 10; y++) {
-            var pos = new node(Math.random() * width, Math.random() * height);
-            positions[i] = pos;
-            i++;
-        } 
+    nodes = []
+    for (let i = 0; i < 50; i++) {
+		var pos = new node(Math.random() * width, Math.random() * height);
+		nodes[i] = pos;
     }
     
     ctx.fillStyle = "#20C20E";
     ctx.strokeStyle = "#f4ec04";
-    ctx.lineWitdh = 10;
+    ctx.lineWitdh = 1;
+
 }
 
 
 function updateNodes() {
-    console.log("thing");
+
     ctx.clearRect(0,0,width, height);
-    ctx.beginPath();
-    for (let i = 0; i < positions.length; i++) {
-        ctx.lineTo(positions[i].x, positions[i].y);
-        positions[i].move();
+    for (let i = 0; i < nodes.length; i++) {
+		
+		nodes[i].move();
+
+		let closest = new node(0,0);
+		let closest2 = new node(0,0);
+		for (let j = 0; j < nodes.length; j++) {
+			
+			if (i == j) {
+				continue;
+			}
+
+			let d = getDistance(nodes[i], nodes[j]);
+
+			if (d < closest2.distance) {
+				if (d < closest.distance) {
+					closest = nodes[j];
+					closest.distance = d;
+				}
+				else {
+					closest2 = nodes[j];
+					closest2.distance = d;
+				}
+			}
+		}
+		ctx.beginPath();
+		ctx.lineTo(closest.x, closest.y);
+		ctx.lineTo(closest2.x, closest2.y);
+		ctx.lineTo(nodes[i].x, nodes[i].y);
+		ctx.closePath();
+		ctx.stroke();
+		
     }
-    ctx.closePath();
-    ctx.stroke();
 }
 
 function getDistance(node1, node2) {
