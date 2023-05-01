@@ -33,6 +33,7 @@ window.onload = function init() {
         break;
 
     case "about.html":
+        generateNodes();
         break;
     }
 
@@ -53,11 +54,11 @@ window.onscroll = function scroll() {
     }
 
     switch (subPage) {
-        case "index.html":
-            var slideOffset = slidein.offsetTop - scrollDist - slidein.offsetHeight/2 + 350;
-            slideOffset = Math.max(slideOffset, 0);
-            slideInDiv.style.left = slideOffset.toString() + "px";
-            break;
+    case "index.html":
+        var slideOffset = slidein.offsetTop - scrollDist - slidein.offsetHeight/2 + 350;
+        slideOffset = Math.max(slideOffset, 0);
+        slideInDiv.style.left = slideOffset.toString() + "px";
+        break;
     }
     
     return;
@@ -84,4 +85,89 @@ function changeSlide(number) {
 
 function toggleNav() {
     nav.classList.toggle("nav-toggle");
+}
+
+class node {
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+        this.dx = Math.random() * 2 + 1;
+        this.dy = Math.random() * 2 + 1;
+
+        let rndx = Math.random();
+        let rndy = Math.random();
+
+        if (rndx > 0.5) {
+            this.dx *= -1;
+        }
+
+        if (rndy > 0.5) {
+            this.dy *= -1;
+        }
+
+    }
+
+    move() {
+        this.x += this.dx;
+        this.y += this.dy;
+
+        if (this.x < 0 || this.x > width) {
+            this.dx *= -1;
+        }
+
+        if (this.y < 0 || this.y > height) {
+            this.dy *= -1;
+        }
+    }
+}
+
+var res = setInterval(updateNodes, 5);
+
+function generateNodes() {
+    const canvas = document.getElementById("canvas");
+
+    if (!canvas.getContext("2d")) {
+        return;
+    }
+
+    width = window.innerWidth;
+    height = 600;//window.innerHeight;
+    
+    ctx = canvas.getContext("2d");
+    ctx.canvas.width  = width;
+    ctx.canvas.height = height;
+    
+    positions = []
+    let i = 0;
+    for (let x = 0; x < 10; x++) {
+        for (let y = 0; y < 10; y++) {
+            var pos = new node(Math.random() * width, Math.random() * height);
+            positions[i] = pos;
+            i++;
+        } 
+    }
+    
+    ctx.fillStyle = "#20C20E";
+    ctx.strokeStyle = "#f4ec04";
+    ctx.lineWitdh = 10;
+}
+
+
+function updateNodes() {
+    console.log("thing");
+    ctx.clearRect(0,0,width, height);
+    ctx.beginPath();
+    for (let i = 0; i < positions.length; i++) {
+        ctx.lineTo(positions[i].x, positions[i].y);
+        positions[i].move();
+    }
+    ctx.closePath();
+    ctx.stroke();
+}
+
+function getDistance(node1, node2) {
+    let a2 = Math.pow(Math.abs(node1.x - node2.x), 2);
+    let b2 = Math.pow(Math.abs(node1.y - node2.y), 2);
+    let c = Math.sqrt(a2 + b2);
+    return c;
 }
