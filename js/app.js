@@ -92,22 +92,10 @@ class node {
 	constructor(x,y) {
 		this.x = x;
         this.y = y;
-        this.dx = Math.random() * 0.6;
-        this.dy = Math.random() * 0.6;
+        this.dx = Math.random() * 0.3 - 0.15;
+        this.dy = Math.random() * 0.3 - 0.15;
 		
 		this.distance = 1000000000.0; // magic number plz fix
-
-        let rndx = Math.random();
-        let rndy = Math.random();
-
-        if (rndx > 0.5) {
-            this.dx *= -1;
-        }
-
-        if (rndy > 0.5) {
-            this.dy *= -1;
-        }
-
     }
 
     move() {
@@ -134,20 +122,19 @@ function generateNodes() {
     }
 
     width = window.innerWidth;
-    height = 600;//window.innerHeight;
+    height = document.getElementById("about-reviews").clientHeight;
     
     ctx = canvas.getContext("2d");
     ctx.canvas.width  = width;
     ctx.canvas.height = height;
     
     nodes = []
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 200; i++) {
 		var pos = new node(Math.random() * width, Math.random() * height);
 		nodes[i] = pos;
     }
     
-    ctx.fillStyle = "#20C20E";
-    ctx.strokeStyle = "#f4ec04";
+    baseStrokeStyle = "rgba(244,58,0,";
     ctx.lineWitdh = 1;
 
 }
@@ -182,9 +169,15 @@ function updateNodes() {
 			}
 		}
 		ctx.beginPath();
+        ctx.strokeStyle = baseStrokeStyle + (100 / closest.distance).toString() + ")";
 		ctx.lineTo(closest.x, closest.y);
+
+        ctx.strokeStyle = baseStrokeStyle + (100 / closest2.distance).toString() + ")";
 		ctx.lineTo(closest2.x, closest2.y);
+
+        ctx.strokeStyle = baseStrokeStyle + (100 / getDistance(nodes[i], closest2)).toString() + ")";
 		ctx.lineTo(nodes[i].x, nodes[i].y);
+
 		ctx.closePath();
 		ctx.stroke();
 		
